@@ -45,12 +45,14 @@ def get_UniMod_position(item):
     aa_of_interest = list()
     pattern = r'\(UniMod:21\)'
     matches = re.finditer(pattern, item)
-    counter = 0
+    total_match_length = 0
     for match in matches:
-        match_position = match.span()[0]
-        match_positions.append(match_position - counter*11)
-        aa_of_interest.append(item[match_position-1])
-        counter += 1
+        match_string = match.group()
+        if match_string == '(UniMod:21)':
+            match_position = match.span()[0]
+            match_positions.append(match_position - total_match_length)
+            aa_of_interest.append(item[match_position-1])
+        total_match_length += len(match_string)
     return match_positions, aa_of_interest
 
 
