@@ -43,7 +43,7 @@ for index, row in df.iterrows():
 def get_UniMod_position(item):
     match_positions = list()
     aa_of_interest = list()
-    pattern = r'\(UniMod:21\)'
+    pattern = r'\(UniMod:(\d+)\)'
     matches = re.finditer(pattern, item)
     total_match_length = 0
     for match in matches:
